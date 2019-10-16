@@ -1,6 +1,6 @@
 {
-  "name": "preact-starter",
-  "short_name": "preact-starter",
+  "name": "frontend-applications",
+  "short_name": "frontend-applications",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
