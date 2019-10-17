@@ -24,10 +24,10 @@ export default class App extends Component {
 		return (
 			<div id="app">
 				<Provider store={store}>
-				<Router onChange={this.handleRoute}>
-					<Home path="/" />
+					<Router onChange={this.handleRoute}>
+						<Home path="/" />
 						<Results path="/results" results={results} />
-				</Router>
+					</Router>
 				</Provider>
 			</div>
 		);
