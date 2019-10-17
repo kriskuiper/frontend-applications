@@ -5,6 +5,7 @@ import { Provider , useSelector } from 'react-redux';
 import store from '../store';
 
 import Home from '../pages/home';
+import Results from '../pages/results';
 
 export default class App extends Component {
 
@@ -25,6 +26,7 @@ export default class App extends Component {
 				<Provider store={store}>
 				<Router onChange={this.handleRoute}>
 					<Home path="/" />
+						<Results path="/results" results={results} />
 				</Router>
 				</Provider>
 			</div>
