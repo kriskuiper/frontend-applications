@@ -1,7 +1,9 @@
 import { h, Component } from 'preact';
 import { Router } from 'preact-router';
+import { Provider , useSelector } from 'react-redux';
 
-// Code-splitting is automated for routes
+import store from '../store';
+
 import Home from '../pages/home';
 
 export default class App extends Component {
@@ -16,11 +18,15 @@ export default class App extends Component {
 	};
 
 	render() {
+		const results = useSelector(state => state.results);
+
 		return (
 			<div id="app">
+				<Provider store={store}>
 				<Router onChange={this.handleRoute}>
 					<Home path="/" />
 				</Router>
+				</Provider>
 			</div>
 		);
 	}
