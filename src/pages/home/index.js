@@ -6,6 +6,8 @@ import { setResults } from '../../store/actions';
 import fetchResultsForQuery from '../../../lib/fetch-results-for-query';
 import choices from './choices';
 
+import TitleInput from '../../components/title-input';
+
 /*
 * Since useEffect and useState are only available in
 * Preact v10 or higher I have to convert the component
@@ -13,7 +15,6 @@ import choices from './choices';
 */
 class Home extends Component {
 	state = {
-		expoTitle: '',
 		showTitleInput: false,
 		query: ''
 	};
@@ -35,10 +36,11 @@ class Home extends Component {
 			<main>
 				<h1>Maak je eigen expo</h1>
 				{choices.map(choice => (
-					<button onClick={this.handleTitleInputOpen}>
+					<button onClick={() => this.handleShowTitleInput(choice.query)}>
 						{choice.label}
 					</button>
-				))};
+				))}
+				{this.state.showTitleInput ? <TitleInput /> : ''}
 			</main>
 		);
 	}
