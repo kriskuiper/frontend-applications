@@ -1,4 +1,9 @@
-import { ADD_EXPO, RESET_EXPOS, SET_RESULTS } from './action-types';
+import {
+	ADD_EXPO,
+	RESET_EXPOS,
+	SET_RESULTS,
+	SET_EXPO_TITLE
+} from './action-types';
 
 export function expos(state = [], action) {
 	const { expo } = action;
@@ -16,6 +21,8 @@ export function expos(state = [], action) {
 }
 
 export function results(state = [], action) {
+	const { results } = action;
+
 	switch (action.type) {
 		case (SET_RESULTS): {
 			return { ...state, results };
@@ -23,4 +30,12 @@ export function results(state = [], action) {
 	}
 
 	return state;
+}
+
+export function expoTitle(state = '', action) {
+	switch (action.type) {
+		case (SET_EXPO_TITLE): {
+			return { ...state, title: action.newTitle };
+		}
+	}
 }
