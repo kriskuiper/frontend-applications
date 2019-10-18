@@ -45,4 +45,4 @@ class Home extends Component {
 	}
 }
 
-export default connect(null, { setResults })(Home);
+export default connect(null, setResults)(Home);
