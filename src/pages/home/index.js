@@ -18,13 +18,12 @@ class Home extends Component {
 		query: ''
 	};
 
-	handleShowTitleInput() {
-		const { showTitleInput } = this.state;
-
-		return this.setState('showTitleInput', !showTitleInput);
+	handleShowTitleInput = query => {
+		this.setState({ showTitleInput: true });
+		this.setState({ query })
 	}
 
-	setNewResults() {
+	setNewResults = () => {
 		const { query } = this.state;
 		const newResults = fetchResultsForQuery(query, 0);
 
