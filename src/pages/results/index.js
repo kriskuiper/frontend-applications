@@ -1,5 +1,8 @@
 import { h, Component } from 'preact';
+import { connect } from 'preact-redux';
 import './style';
+
+import { results } from '../../store/reducers';
 
 import Result from '../../components/result/result';
 
@@ -18,4 +21,4 @@ class Results extends Component {
 	}
 }
 
-export default Results;
+export default connect(results, null)(Results);
