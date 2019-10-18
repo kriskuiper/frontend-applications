@@ -1,5 +1,6 @@
 import './style';
 import { h, Component } from 'preact';
+import { connect } from 'preact-redux';
 
 import { setExpoTitle } from '../../store/actions';
 
@@ -26,4 +27,4 @@ class TitleInput extends Component {
 	}
 }
 
-export default TitleInput;
+export default connect(null, setExpoTitle)(TitleInput);
