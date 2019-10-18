@@ -1,20 +1,35 @@
-import { h } from 'preact';
+import { h, Component } from 'preact';
 import './style';
+
+import { getExposFromStorage } from '../../../lib/expo-storage';
 
 import Expo from '../../components/expo';
 
-const Expos = () => {
+/*
+* Since useEffect and useState are only available in
+* Preact v10 or higher I have to convert the component
+* to a class if I want to use lifecyclehooks or state... :(
+*/
+class Expos extends Component {
+	state = {
+		expos: []
+	}
 
-	/* @TODO: get expos from localStorage */
-	const expos = [];
+	componentWillMount() {
+		this.state.expos = getExposFromStorage();
+	}
 
-	return (
-		<main>
-			{expos.map(expo => (
-				<Expo expo={expo} />
-			))}
-		</main>
-	);
-};
+	render() {
+		const { expos } = this.state;
+
+		return (
+			<main>
+				{expos.map(expo => (
+					<Expo expo={expo} />
+				))}
+			</main>
+		);
+	}
+}
 
 export default Expos;
