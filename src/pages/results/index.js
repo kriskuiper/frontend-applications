@@ -4,7 +4,7 @@ import './style';
 
 import { results } from '../../store/reducers';
 
-import Result from '../../components/result/result';
+import Result from '../../components/result';
 
 class Results extends Component {
 	state = { currentExpo: [] };
