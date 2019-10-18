@@ -1,4 +1,4 @@
-import { h, Component, useCallback } from 'preact';
+import { h, Component } from 'preact';
 import { connect } from 'preact-redux';
 import './style';
 import { setResults } from '../../store/actions';
@@ -45,4 +45,4 @@ class Home extends Component {
 	}
 }
 
-export default connect({ }, { setResults })(Home);
+export default connect(null, { setResults })(Home);
