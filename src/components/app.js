@@ -19,7 +19,7 @@ class App extends Component {
 		this.currentUrl = event.url;
 	};
 
-	render({ results }) {
+	render({ results }, { }) {
 		return (
 			<div id="app">
 				<Provider store={store}>
@@ -33,4 +33,4 @@ class App extends Component {
 	}
 }
 
-export default connect({ results }, null)(App);
+export default connect({ results }, { })(App);
