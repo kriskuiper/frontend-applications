@@ -1,13 +1,14 @@
 import { h, Component } from 'preact';
 import { Router } from 'preact-router';
-import { Provider , useSelector } from 'react-redux';
+import { Provider, connect } from 'preact-redux';
 
 import store from '../store';
+import { results } from '../store/reducers';
 
 import Home from '../pages/home';
 import Results from '../pages/results';
 
-export default class App extends Component {
+class App extends Component {
 
 	/** Gets fired when the route changes.
 	  *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
@@ -18,9 +19,7 @@ export default class App extends Component {
 		this.currentUrl = event.url;
 	};
 
-	render() {
-		const results = useSelector(state => state.results);
-
+	render({ results }) {
 		return (
 			<div id="app">
 				<Provider store={store}>
@@ -33,3 +32,5 @@ export default class App extends Component {
 		);
 	}
 }
+
+export default connect({ results }, null)(App);
