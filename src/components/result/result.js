@@ -1,9 +1,7 @@
 import { h } from 'preact';
 import './style';
 
-const formatDescriptionForResult = (description) => {
-	return description.replace(/<br>/gi, '');
-};
+const formatDescriptionForResult = description => description.replace(/<br>/gi, '');
 
 const Result = ({ result }) => {
 	const { img, title, description } = result;
