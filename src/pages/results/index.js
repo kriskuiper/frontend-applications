@@ -9,11 +9,11 @@ import Result from '../../components/result/result';
 class Results extends Component {
 	state = { currentExpo: [] };
 
-	render({ results }, { }) {
+	render() {
 		return (
 			<section>
 				<h2>Resultaten: </h2>
-				{results.map(result => {
+				{this.props.results.map(result => {
 					<Result result={result} />;
 				})}
 			</section>
