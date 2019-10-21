@@ -36,6 +36,7 @@ class Home extends Component {
 			<main>
 				<h1>Maak je eigen expo</h1>
 				{choices.map(choice => (
+					// @TODO: maak een subcomponent aan
 					<button onClick={() => this.handleShowTitleInput(choice.query)}>
 						{choice.label}
 					</button>
