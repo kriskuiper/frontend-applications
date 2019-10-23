@@ -3,24 +3,30 @@ import { connect } from 'preact-redux';
 import style from './style.css';
 
 import { addExpoToStorage } from '../../../lib/expo-storage';
+import fetchResultsForQuery from '../../../lib/fetch-results-for-query';
+
+import { setResults } from '../../store/actions';
 
 import Result from '../../components/result';
 
-const mapStateToProps = (state) => ({
-	results: state.results,
-	expoTitle: state.expoTitle.value
-});
+const mapStateToProps = (state) => {
+	return {
+		results: state.results,
+		expoTitle: state.expoTitle.value,
+		currentQuery: state.currentQuery
+	};
+};
+
+const mapDispatchToProps = {
+	setResults
+};
 
 class Results extends Component {
 	state = {
 		expoTitle: '',
-		expoObjects: []
+		expoObjects: [],
+		pageNumber: 1
 	}
-
-	getCurrentExpo = () => ({
-		title: this.state.expoTitle,
-		objects: this.state.expoObjects
-	})
 
 	handleAddToCurrentExpo = (result) => {
 		const { expoTitle } = this.props;
@@ -55,6 +61,21 @@ class Results extends Component {
 		this.setState({ expoTitle: '' });
 	}
 
+	handlePagination = () => {
+		const { results, setResults } = this.props;
+		const { pageNumber } = this.state;
+		const newPageNumber = pageNumber + 1;
+
+		this.setState({ pageNumber: newPageNumber });
+
+		const offset = this.state.pageNumber * 24;
+
+		return fetchResultsForQuery('clothingQuery', offset)
+			.then(offsetResults => {
+				return setResults([...results, ...offsetResults]);
+			});
+	}
+
 	render({ results }) {
 		return (
 			<section>
@@ -68,10 +89,11 @@ class Results extends Component {
 						onDeleteFromExpo={this.handleDeleteFromCurrentExpo}
 					/>
 				))}
+				<button onClick={this.handlePagination}>Load more</button>
 			</section>
 		);
 	}
 }
 
 
-export default connect(mapStateToProps)(Results);
+export default connect(mapStateToProps, mapDispatchToProps)(Results);
