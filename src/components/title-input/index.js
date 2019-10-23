@@ -1,6 +1,6 @@
-import './style';
 import { h, Component } from 'preact';
 import { connect } from 'preact-redux';
+import style from './style.css';
 
 import { setExpoTitle } from '../../store/actions';
 import { route } from 'preact-router';

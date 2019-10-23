@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import './style';
+import style from './style.css';
 
 import FixedRatio from '../fixed-ratio';
 

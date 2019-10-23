@@ -1,6 +1,7 @@
 import { h, Component } from 'preact';
 import { connect } from 'preact-redux';
-import './style';
+import style from './style.css';
+
 import { setResults } from '../../store/actions';
 
 import fetchResultsForQuery from '../../../lib/fetch-results-for-query';

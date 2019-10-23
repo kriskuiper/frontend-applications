@@ -1,5 +1,5 @@
 import { h, Component } from 'preact';
-import './style';
+import style from './style.css';
 
 import { getExposFromStorage } from '../../../lib/expo-storage';
 

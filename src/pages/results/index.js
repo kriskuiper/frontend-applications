@@ -1,6 +1,6 @@
 import { h } from 'preact';
 import { connect } from 'preact-redux';
-import './style';
+import style from './style.css';
 
 import Result from '../../components/result';
 

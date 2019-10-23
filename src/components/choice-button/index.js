@@ -1,5 +1,5 @@
-import './style';
 import { h, Component } from 'preact';
+import style from './style.css';
 
 class ChoiceButton extends Component {
 	handleClick = () => {
