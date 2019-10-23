@@ -1,0 +1,16 @@
+.result-image {
+	display: block;
+  position: relative;
+  height: 0;
+	overflow: hidden;
+	background-color: #eee;
+}
+
+.result-image__content {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	max-width: inherit;
+}
