@@ -14,14 +14,13 @@ class Results extends Component {
 		currentExpo: { title: this.props.expoTitle, objects: [] }
 	};
 
-	render() {
+	render({ expoTitle, results }, {}) {
 		return (
 			<section>
-				<h2>Resultaten: {this.props.expoTitle} </h2>
-				{this.props.results.map(result => {
+				<h2>Resultaten: {expoTitle} </h2>
+				{results.map(result => {
 					<Result result={result} />;
 				})}
-				<button onClick={() => console.log(this.props)}>hello</button>
 			</section>
 		);
 	}

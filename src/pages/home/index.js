@@ -32,9 +32,12 @@ class Home extends Component {
 	handleTitleInputSubmit = async () => {
 		const { setResults } = this.props;
 		const { query } = this.state;
-		const newResults = await fetchResultsForQuery(query, 0);
 
-		return setResults(newResults);
+		return fetchResultsForQuery(query, 0)
+			.then(setResults)
+			.catch(error => {
+				throw new Error('Could not set new results');
+			});
 	}
 
 	render() {
@@ -50,9 +53,10 @@ class Home extends Component {
 					/>
 				))}
 				{this.state.showTitleInput
-					? <TitleInput onTitleInputSubmit={this.handleTitleInputSubmit} />
-					: ''
-				}
+					? (
+						<TitleInput onTitleInputSubmit={this.handleTitleInputSubmit} />
+					)
+					: ''}
 			</main>
 		);
 	}

@@ -1,7 +1,6 @@
 import './style';
 import { h, Component } from 'preact';
 import { connect } from 'preact-redux';
-import { route } from 'preact-router';
 
 import { setExpoTitle } from '../../store/actions';
 
@@ -19,8 +18,6 @@ class TitleInput extends Component {
 
 		this.props.setExpoTitle(this.state.input);
 		this.props.onTitleInputSubmit();
-
-		route('/results');
 	}
 
 	render() {
