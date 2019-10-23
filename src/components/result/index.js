@@ -1,7 +1,7 @@
 import { h } from 'preact';
 import './style';
 
-import ResultImage from '../result-image';
+import FixedRatio from '../fixed-ratio';
 
 const formatDescriptionForResult = description => description.replace(/<br>/gi, '');
 
@@ -10,12 +10,9 @@ const Result = ({ result }) => {
 
 	return (
 		<article class="result">
-			<ResultImage
-				height={1}
-				width={1}
-				src={img}
-				alt={`image of ${title}`}
-			/>
+			<FixedRatio height={1} width={1}>
+				<img src={img} alt={`Afbeelding van ${title}`} />
+			</FixedRatio>
 			<h2 class="result__title">{title}</h2>
 			{description ? (
 				<p class="result__description">

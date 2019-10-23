@@ -1,4 +1,4 @@
-.result-image {
+.fixed-ratio{
 	display: block;
   position: relative;
   height: 0;
@@ -6,7 +6,7 @@
 	background-color: #eee;
 }
 
-.result-image__content {
+.fixed-ratio__content {
 	position: absolute;
 	top: 0;
 	left: 0;
