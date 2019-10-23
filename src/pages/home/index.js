@@ -7,6 +7,7 @@ import fetchResultsForQuery from '../../../lib/fetch-results-for-query';
 import choices from './choices';
 
 import TitleInput from '../../components/title-input';
+import ChoiceButton from '../../components/choice-button';
 
 /*
 * Since useEffect and useState are only available in
@@ -37,9 +38,11 @@ class Home extends Component {
 				<h1>Maak je eigen expo</h1>
 				{choices.map(choice => (
 					// @TODO: maak een subcomponent aan
-					<button onClick={() => this.handleShowTitleInput(choice.query)}>
-						{choice.label}
-					</button>
+					<ChoiceButton
+						onChoiceButtonClick={this.handleShowTitleInput}
+						query={choice.query}
+						label={choice.label}
+					/>
 				))}
 				{this.state.showTitleInput ? <TitleInput /> : ''}
 			</main>
