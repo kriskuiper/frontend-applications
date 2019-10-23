@@ -14,4 +14,6 @@ const defaultState = {
 
 const store = createStore(rootReducer, defaultState);
 
+store.subscribe(() => console.log('Updated! ', store.getState()));
+
 export default store;
