@@ -17,9 +17,9 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = {
-	setResults
-};
+const mapDispatchToProps = (dispatch) => ({
+	setResults: (results) => { dispatch(setResults(results)); }
+});
 
 class Results extends Component {
 	state = {
@@ -61,19 +61,16 @@ class Results extends Component {
 		this.setState({ expoTitle: '' });
 	}
 
-	handlePagination = () => {
-		const { results, setResults } = this.props;
+	handlePagination = async () => {
 		const { pageNumber } = this.state;
 		const newPageNumber = pageNumber + 1;
 
 		this.setState({ pageNumber: newPageNumber });
 
 		const offset = this.state.pageNumber * 24;
+		const offsetResults = await fetchResultsForQuery('clothingQuery', offset);
 
-		return fetchResultsForQuery('clothingQuery', offset)
-			.then(offsetResults => {
-				return setResults([...results, ...offsetResults]);
-			});
+		this.props.setResults(offsetResults);
 	}
 
 	render({ results }) {
@@ -94,6 +91,5 @@ class Results extends Component {
 		);
 	}
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results);
