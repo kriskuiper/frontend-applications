@@ -6,6 +6,7 @@ import store from '../store';
 
 import Home from '../pages/home';
 import Results from '../pages/results';
+import Expos from '../pages/expos';
 
 class App extends Component {
 
@@ -25,6 +26,7 @@ class App extends Component {
 					<Router onChange={this.handleRoute}>
 						<Home path="/" />
 						<Results path="/results" />
+						<Expos path="/expos" />
 					</Router>
 				</Provider>
 			</div>
