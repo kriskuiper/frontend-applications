@@ -20,9 +20,9 @@ class Home extends Component {
 		query: ''
 	};
 
-	handleShowTitleInput = query => {
+	handleShowTitleInput = (query) => {
 		this.setState({ showTitleInput: true });
-		this.setState({ query })
+		this.setState({ query });
 	}
 
 	setNewResults = () => {
