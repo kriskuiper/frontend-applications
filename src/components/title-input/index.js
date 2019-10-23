@@ -3,6 +3,7 @@ import { h, Component } from 'preact';
 import { connect } from 'preact-redux';
 
 import { setExpoTitle } from '../../store/actions';
+import { route } from 'preact-router';
 
 const mapDispatchToProps = { setExpoTitle };
 
@@ -13,11 +14,12 @@ class TitleInput extends Component {
 		this.setState({ input: event.target.value });
 	}
 
-	handleSubmit = (event) => {
+	handleSubmit = async (event) => {
 		event.preventDefault();
 
 		this.props.setExpoTitle(this.state.input);
-		this.props.onTitleInputSubmit();
+		await this.props.onTitleInputSubmit();
+		route('/results');
 	}
 
 	render() {
