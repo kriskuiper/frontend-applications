@@ -1,8 +1,16 @@
 import { createStore, combineReducers } from 'redux';
-import { results, expos } from './reducers';
 
-const rootReducer = combineReducers({ results, expos });
-const defaultState = { results: ['henkie'], expos: [] };
+import { results, expoTitle } from './reducers';
+
+const rootReducer = combineReducers({
+	results,
+	expoTitle
+});
+
+const defaultState = {
+	results: [],
+	expoTitle: { value: '' }
+};
 
 const store = createStore(rootReducer, defaultState);
 

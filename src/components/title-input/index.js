@@ -1,20 +1,26 @@
 import './style';
 import { h, Component } from 'preact';
 import { connect } from 'preact-redux';
+import { route } from 'preact-router';
 
 import { setExpoTitle } from '../../store/actions';
+
+const mapDispatchToProps = { setExpoTitle };
 
 class TitleInput extends Component {
 	state = { input: '' }
 
-	handleInput(event) {
-		this.setState('input', event.target.value);
+	handleInput = (event) => {
+		this.setState({ input: event.target.value });
 	}
 
-	handleSubmit(event) {
+	handleSubmit = (event) => {
 		event.preventDefault();
 
-		return setExpoTitle(this.state.input);
+		this.props.setExpoTitle(this.state.input);
+		this.props.onTitleInputSubmit();
+
+		route('/results');
 	}
 
 	render() {
@@ -27,4 +33,4 @@ class TitleInput extends Component {
 	}
 }
 
-export default connect(null, setExpoTitle)(TitleInput);
+export default connect(null, mapDispatchToProps)(TitleInput);

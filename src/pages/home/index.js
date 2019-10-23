@@ -9,11 +9,15 @@ import choices from './choices';
 import TitleInput from '../../components/title-input';
 import ChoiceButton from '../../components/choice-button';
 
+
+const mapDispatchToProps = { setResults };
+
 /*
 * Since useEffect and useState are only available in
 * Preact v10 or higher I have to convert the component
 * to a class if I want to use lifecyclehooks or state... :(
 */
+
 class Home extends Component {
 	state = {
 		showTitleInput: false,
@@ -25,9 +29,10 @@ class Home extends Component {
 		this.setState({ query });
 	}
 
-	setNewResults = () => {
+	handleTitleInputSubmit = async () => {
+		const { setResults } = this.props;
 		const { query } = this.state;
-		const newResults = fetchResultsForQuery(query, 0);
+		const newResults = await fetchResultsForQuery(query, 0);
 
 		return setResults(newResults);
 	}
@@ -44,10 +49,13 @@ class Home extends Component {
 						label={choice.label}
 					/>
 				))}
-				{this.state.showTitleInput ? <TitleInput /> : ''}
+				{this.state.showTitleInput
+					? <TitleInput onTitleInputSubmit={this.handleTitleInputSubmit} />
+					: ''
+				}
 			</main>
 		);
 	}
 }
 
-export default connect(null, setResults)(Home);
+export default connect(null, mapDispatchToProps)(Home);
