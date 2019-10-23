@@ -10,9 +10,11 @@ const Result = ({ result }) => {
 		<article class="result">
 			<img src={img} alt={`image of ${title}`} />
 			<h2 class="result__title">{title}</h2>
-			<p class="result__description">
-				{formatDescriptionForResult(description)}
-			</p>
+			{description ? (
+				<p class="result__description">
+					{formatDescriptionForResult(description)}
+				</p>
+			) : ''}
 		</article>
 	);
 };
