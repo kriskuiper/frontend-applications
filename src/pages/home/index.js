@@ -10,6 +10,9 @@ import choices from './choices';
 import TitleInput from '../../components/title-input';
 import ChoiceButton from '../../components/choice-button';
 
+const mapStateToProps = (state) => ({
+	currentQuery: state.currentQuery
+});
 
 const mapDispatchToProps = (dispatch) => ({
 	setResults: (results) => { dispatch(setResults(results)); },
