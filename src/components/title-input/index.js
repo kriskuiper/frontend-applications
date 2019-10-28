@@ -16,9 +16,11 @@ class TitleInput extends Component {
 
 	handleSubmit = async (event) => {
 		event.preventDefault();
+		const { input } = this.state;
+		const { setExpoTitle, onTitleInputSubmit } = this.props;
 
-		this.props.setExpoTitle(this.state.input);
-		await this.props.onTitleInputSubmit();
+		setExpoTitle(input);
+		await onTitleInputSubmit();
 		route('/results');
 	}
 
