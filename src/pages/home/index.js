@@ -40,7 +40,7 @@ class Home extends Component {
 
 		return fetchResultsForQuery(currentQuery, 0)
 			.then(setResults)
-			.catch(error => {
+			.catch(() => {
 				throw new Error('Could not set new results');
 			});
 	}
