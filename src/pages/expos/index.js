@@ -16,6 +16,7 @@ const Expos = () => {
 
 	return (
 		<section>
+			<h1>Resultaten</h1>
 			{expos.map(expo => (
 				<Expo expo={expo} />
 			))}
