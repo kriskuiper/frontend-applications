@@ -43,7 +43,7 @@ class Results extends Component {
 		setResults(offsetResults);
 	}
 
-	render({ results }) {
+	render({ results, currentExpo }) {
 		return (
 			<section>
 				<h2>Resultaten:</h2>
