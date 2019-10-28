@@ -11,7 +11,10 @@ import TitleInput from '../../components/title-input';
 import ChoiceButton from '../../components/choice-button';
 
 
-const mapDispatchToProps = { setResults, setCurrentQuery };
+const mapDispatchToProps = (dispatch) => ({
+	setResults: (results) => { dispatch(setResults(results)); },
+	setCurrentQuery: (query) => { dispatch(setCurrentQuery(query)); }
+});
 
 /*
 * Since useEffect and useState are only available in
