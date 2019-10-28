@@ -46,7 +46,7 @@ const rootReducer = (state = defaultState, action) => {
 			...state,
 			currentExpo: {
 				title: state.currentExpo.title,
-				results: { ...state.currentExpo.results, result }
+				results: [ ...state.currentExpo.results, result ]
 			}
 		};
 	}
@@ -70,7 +70,7 @@ const rootReducer = (state = defaultState, action) => {
 			...state,
 			currentExpo: {
 				title: '',
-				results: {}
+				results: []
 			}
 		};
 	}
