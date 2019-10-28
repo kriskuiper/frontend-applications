@@ -29,6 +29,8 @@ class Home extends Component {
 	state = { showTitleInput: false };
 
 	handleShowTitleInput = (query) => {
+		const { setCurrentQuery } = this.props;
+
 		this.setState({ showTitleInput: true });
 		setCurrentQuery(query);
 	}
