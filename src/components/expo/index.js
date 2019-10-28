@@ -14,7 +14,7 @@ const Expo = ({ expo }) => {
 					<figure>
 						{firstFourObjects().map(result => (
 							<img src={result.img} />
-						).slice(0, 3))}
+						))}
 						<figcaption class="sr-only">Afbeeldingen van expo {title}</figcaption>
 					</figure>
 				</div>
