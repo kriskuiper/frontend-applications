@@ -26,9 +26,10 @@ class TitleInput extends Component {
 
 	render() {
 		return (
-			<form onSubmit={this.handleSubmit}>
-				<label>Wat is de titel van je nieuwe expositie?</label>
-				<input type="text" onInput={this.handleInput} />
+			<form onSubmit={this.handleSubmit} class={style['title-input']}>
+				<label class={style['title-input__label']}>Wat is de titel van je nieuwe expositie?</label>
+				<input type="text" onInput={this.handleInput} class={style['title-input__input']} />
+				<button class={style['title-input__button']}>Zoek objecten</button>
 			</form>
 		);
 	}

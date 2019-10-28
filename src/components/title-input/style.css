@@ -1,0 +1,18 @@
+.title-input__label {
+	margin-bottom: 0.875rem;
+	display: block;
+}
+
+.title-input__input {
+	width: 100%;
+	padding: 0.5rem;
+	display: block;
+	border: 0;
+	font-size: 1rem;
+	margin-bottom: 0.875rem;
+}
+
+.title-input__button {
+	margin-bottom: 0;
+	width: 100%;
+}
