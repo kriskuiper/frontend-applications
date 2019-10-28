@@ -5,6 +5,7 @@ import style from './style.css';
 import { addToExpo, deleteFromExpo } from '../../store/actions';
 
 import FixedRatio from '../fixed-ratio';
+import AppIcon from '../app-icon';
 
 const formatDescriptionForResult = description => description.replace(/<br>/gi, '');
 
@@ -18,11 +19,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class Result extends Component {
-	isInCurrentExpo = () => {
-		const { currentExpo, result } = this.props;
 
-		return currentExpo.results.find(object => object.id === result.id);
-	}
 
 	handleAddToExpo = () => {
 		const { addToExpo, result } = this.props;
@@ -36,25 +33,38 @@ class Result extends Component {
 		return deleteFromExpo(result);
 	}
 
-	render({ result, isInCurrentExpo }) {
+	render({ result }) {
 		const { img, title, description } = result;
+		const isInCurrentExpo = () => {
+			const { currentExpo, result } = this.props;
+
+			return Boolean(currentExpo.results.find(object => object.id === result.id));
+		};
 
 		return (
-			<article class="result">
+			<article class={style.result}>
 				<FixedRatio height={1} width={1}>
 					<img src={img} alt={`Afbeelding van ${title}`} />
 				</FixedRatio>
-				<h2 class="result__title">{title}</h2>
+				<header class={style.result__header}>
+					<h3 class={style.result__title}>{title}</h3>
+					{isInCurrentExpo() ? (
+						<button onClick={this.handleDeleteFromExpo}>
+							<span class="sr-only">Delete from expo</span>
+							<AppIcon icon="minus" />
+						</button>
+					) : (
+						<button onClick={this.handleAddToExpo}>
+							<span class="sr-only">Add to expo</span>
+							<AppIcon icon="plus" />
+						</button>
+					)}
+				</header>
 				{description ? (
 					<p class="result__description">
 						{formatDescriptionForResult(description)}
 					</p>
 				) : ''}
-				{this.isInCurrentExpo() ? (
-					<button onClick={this.handleDeleteFromExpo}>Delete from expo</button>
-				) : (
-					<button onClick={this.handleAddToExpo}>Add to expo</button>
-				)}
 			</article>
 		);
 	}
