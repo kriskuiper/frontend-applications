@@ -45,17 +45,22 @@ class Results extends Component {
 
 	render({ results, currentExpo }) {
 		return (
-			<section>
-				<h2>Resultaten:</h2>
+			<main>
+				<h1>Resultaten:</h1>
 				<button onClick={this.handleExposToStorage}>Get expo's to localStorage</button>
-				{results.map((result, i) => (
-					<Result
-						key={i}
-						result={result}
-					/>
-				))}
-				<button onClick={this.handlePagination}>Load more</button>
-			</section>
+				<section class="content">
+					{results.length > 0
+						? results.map((result, i) => (
+							<Result
+								key={i}
+								result={result}
+							/>
+						))
+						: <p>Geen resultaten gevonden</p>
+					}
+					<button onClick={this.handlePagination}>Load more</button>
+				</section>
+			</main>
 		);
 	}
 }
