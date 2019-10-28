@@ -1,22 +1,33 @@
 import { h } from 'preact';
 import style from './style.css';
 
+import FixedRatio from '../fixed-ratio';
+import Result from '../result';
+
 const Expo = ({ expo }) => {
 	const { title, objects } = expo;
 
 	const firstFourObjects = () => objects.slice(0, 4);
 
 	return (
-		<article>
-			<h2>{title}</h2>
+		<article class={style.expo}>
+			<h2 class={style.expo__title}>{title}</h2>
 			{objects.map(object => (
 				<div>
-					<figure>
+					<figure class={style['expo__img-container']}>
 						{firstFourObjects().map(result => (
-							<img src={result.img} />
+							<FixedRatio width={1} height={1}>
+								<img src={result.img} />
+							</FixedRatio>
 						))}
 						<figcaption class="sr-only">Afbeeldingen van expo {title}</figcaption>
 					</figure>
+					<details>
+						<summary>Objecten in deze expo</summary>
+						{object.results.map(result => (
+							<Result result={result} />
+						))}
+					</details>
 				</div>
 			))}
 		</article>
