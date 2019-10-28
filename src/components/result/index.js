@@ -1,28 +1,43 @@
 import { h, Component } from 'preact';
+import { connect } from 'preact-redux';
 import style from './style.css';
+
+import { addToExpo, deleteFromExpo } from '../../store/actions';
+
 
 import FixedRatio from '../fixed-ratio';
 
 const formatDescriptionForResult = description => description.replace(/<br>/gi, '');
 
+const mapStateToProps = (state) => ({
+	currentExpo: state.currentExpo
+});
+
+const mapDispatchToProps = (dispatch) => ({
+	addToExpo: (result) => { dispatch(addToExpo(result)); },
+	deleteFromExpo: (result) => { dispatch(deleteFromExpo(result)); }
+});
+
 class Result extends Component {
-	state = { isInCurrentExpo: false }
+	static isInCurrentExpo = () => {
+		const { currentExpo, result } = this.props;
+
+		return Boolean(currentExpo[result.id]);
+	}
 
 	handleAddToExpo = () => {
-		const { result, onAddToExpo } = this.props;
+		const { addToExpo, result } = this.props;
 
-		this.setState({ isInCurrentExpo: true });
-		onAddToExpo(result);
+		return addToExpo(result);
 	}
 
 	handleDeleteFromExpo = () => {
-		const { result, onDeleteFromExpo } = this.props;
+		const { deleteFromExpo, result } = this.props;
 
-		this.setState({ isInCurrentExpo: false });
-		onDeleteFromExpo(result);
+		return deleteFromExpo(result);
 	}
 
-	render({ result }, { isInCurrentExpo }) {
+	render({ result }) {
 		const { img, title, description } = result;
 
 		return (
@@ -36,7 +51,7 @@ class Result extends Component {
 						{formatDescriptionForResult(description)}
 					</p>
 				) : ''}
-				{isInCurrentExpo ? (
+				{this.isInCurrentExpo() ? (
 					<button onClick={this.handleDeleteFromExpo}>Delete from expo</button>
 				) : (
 					<button onClick={this.handleAddToExpo}>Add to expo</button>
@@ -46,4 +61,4 @@ class Result extends Component {
 	}
 }
 
-export default Result;
+export default connect(mapStateToProps, mapDispatchToProps)(Result);
