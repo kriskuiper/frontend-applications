@@ -21,7 +21,7 @@ const Expo = ({ expo }) => {
 							</FixedRatio>
 						))}
 						<figcaption class="sr-only">
-							Afbeeldingen van de eerste vier werken uit expositie genaamd {title}
+							Afbeeldingen van de eerste vier werken uit expositie, genaamd: {title}
 						</figcaption>
 					</figure>
 					<details>
