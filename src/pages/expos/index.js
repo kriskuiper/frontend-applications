@@ -14,12 +14,14 @@ const Expos = () => {
 	const expos = getExposFromStorage();
 
 	return (
-		<section>
+		<main>
 			<h1>Resultaten</h1>
-			{expos.map(expo => (
-				<Expo expo={expo} />
-			))}
-		</section>
+			<section class="content">
+				{expos.map(expo => (
+					<Expo expo={expo} />
+				))}
+			</section>
+		</main>
 	);
 };
 

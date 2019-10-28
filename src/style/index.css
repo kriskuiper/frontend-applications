@@ -20,6 +20,10 @@ button {
 	font-size: 0.875rem;
 }
 
+figure {
+	margin: 0;
+}
+
 .content {
 	background: #333;
 	color: #fff;
