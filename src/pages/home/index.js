@@ -2,7 +2,7 @@ import { h, Component } from 'preact';
 import { connect } from 'preact-redux';
 import style from './style.css';
 
-import { setResults } from '../../store/actions';
+import { setResults, setCurrentQuery } from '../../store/actions';
 
 import fetchResultsForQuery from '../../../lib/fetch-results-for-query';
 import choices from './choices';
@@ -11,7 +11,7 @@ import TitleInput from '../../components/title-input';
 import ChoiceButton from '../../components/choice-button';
 
 
-const mapDispatchToProps = { setResults };
+const mapDispatchToProps = { setResults, setCurrentQuery };
 
 /*
 * Since useEffect and useState are only available in
@@ -20,21 +20,17 @@ const mapDispatchToProps = { setResults };
 */
 
 class Home extends Component {
-	state = {
-		showTitleInput: false,
-		query: ''
-	};
+	state = { showTitleInput: false };
 
 	handleShowTitleInput = (query) => {
 		this.setState({ showTitleInput: true });
-		this.setState({ query });
+		setCurrentQuery(query);
 	}
 
 	handleTitleInputSubmit = async () => {
-		const { setResults } = this.props;
-		const { query } = this.state;
+		const { setResults, currentQuery } = this.props;
 
-		return fetchResultsForQuery(query, 0)
+		return fetchResultsForQuery(currentQuery, 0)
 			.then(setResults)
 			.catch(error => {
 				throw new Error('Could not set new results');
