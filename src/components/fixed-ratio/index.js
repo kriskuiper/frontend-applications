@@ -17,7 +17,7 @@ class FixedRatio extends Component {
 		return (
 			<div
 				class={style['fixed-ratio']}
-				style={{ paddingBottom: this.ratio() }}
+				style={{ paddingBottom: `${this.ratio()}%` }}
 			>
 				<div class={style['fixed-ratio__content']}>
 					{children}
