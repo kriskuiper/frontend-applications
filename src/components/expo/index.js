@@ -15,9 +15,11 @@ const Expo = ({ expo }) => {
 			<div>
 				<figure class={style['expo__img-container']}>
 					{firstFourResults().map(result => (
-						<FixedRatio width={1} height={1}>
-							<img src={result.img} class={style.expo__img} />
-						</FixedRatio>
+						<div class={style['expo__fixed-ratio-container']}>
+							<FixedRatio width={1} height={1}>
+								<img src={result.img} class={style.expo__img} />
+							</FixedRatio>
+						</div>
 					))}
 					<figcaption class="sr-only">
 						Afbeeldingen van de eerste vier werken uit expositie, genaamd: {title}
