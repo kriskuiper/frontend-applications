@@ -1,0 +1,13 @@
+.expo {
+	margin-bottom: 2rem;
+}
+
+.expo__img-container {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.expo__img {
+	flex: 0 0 50%;
+}

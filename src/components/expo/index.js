@@ -17,10 +17,12 @@ const Expo = ({ expo }) => {
 					<figure class={style['expo__img-container']}>
 						{firstFourObjects().map(result => (
 							<FixedRatio width={1} height={1}>
-								<img src={result.img} />
+								<img src={result.img} class={style.expo__img} />
 							</FixedRatio>
 						))}
-						<figcaption class="sr-only">Afbeeldingen van expo {title}</figcaption>
+						<figcaption class="sr-only">
+							Afbeeldingen van de eerste vier werken uit expositie genaamd {title}
+						</figcaption>
 					</figure>
 					<details>
 						<summary>Objecten in deze expo</summary>
