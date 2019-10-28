@@ -1,6 +1,5 @@
 import { h, Component } from 'preact';
 import { connect } from 'preact-redux';
-import style from './style.css';
 
 import { addExpoToStorage } from '../../../lib/expo-storage';
 import fetchResultsForQuery from '../../../lib/fetch-results-for-query';

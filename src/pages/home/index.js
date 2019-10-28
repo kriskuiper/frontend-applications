@@ -1,6 +1,5 @@
 import { h, Component } from 'preact';
 import { connect } from 'preact-redux';
-import style from './style.css';
 
 import { setResults, setCurrentQuery } from '../../store/actions';
 
