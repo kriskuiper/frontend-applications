@@ -4,7 +4,6 @@ import style from './style.css';
 
 import { addToExpo, deleteFromExpo } from '../../store/actions';
 
-
 import FixedRatio from '../fixed-ratio';
 
 const formatDescriptionForResult = description => description.replace(/<br>/gi, '');
@@ -19,10 +18,10 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class Result extends Component {
-	static isInCurrentExpo = () => {
+	isInCurrentExpo = () => {
 		const { currentExpo, result } = this.props;
 
-		return Boolean(currentExpo[result.id]);
+		return currentExpo.results.find(object => object.id === result.id);
 	}
 
 	handleAddToExpo = () => {
@@ -37,7 +36,7 @@ class Result extends Component {
 		return deleteFromExpo(result);
 	}
 
-	render({ result }) {
+	render({ result, isInCurrentExpo }) {
 		const { img, title, description } = result;
 
 		return (
