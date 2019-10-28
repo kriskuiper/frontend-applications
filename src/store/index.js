@@ -14,7 +14,7 @@ const defaultState = {
 	results: [],
 	currentExpo: {
 		title: '',
-		results: {}
+		results: []
 	},
 	currentQuery: ''
 };
@@ -40,23 +40,21 @@ const rootReducer = (state = defaultState, action) => {
 	}
 
 	if (action.type === ADD_TO_EXPO) {
-		const newResults = { ...state.currentExpo.results };
-
-		newResults[action.result.id] = action.result.title;
+		const { result } = action;
 
 		return {
 			...state,
 			currentExpo: {
 				title: state.currentExpo.title,
-				results: newResults
+				results: { ...state.currentExpo.results, result }
 			}
 		};
 	}
 
 	if (action.type === DELETE_FROM_EXPO) {
-		const newResults = { ...state.currentExpo.results };
-
-		delete newResults[action.result.id];
+		const newResults = state.currentExpo.results.filter(result => (
+			result.id !== action.result.id
+		));
 
 		return {
 			...state,
