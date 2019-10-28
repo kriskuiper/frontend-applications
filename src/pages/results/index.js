@@ -42,7 +42,7 @@ class Results extends Component {
 		setResults(offsetResults);
 	}
 
-	render({ results, currentExpo }) {
+	render({ results }) {
 		return (
 			<main>
 				<h1>Resultaten:</h1>
