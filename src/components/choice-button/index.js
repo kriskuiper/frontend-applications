@@ -12,7 +12,10 @@ class ChoiceButton extends Component {
 		const { label } = this.props;
 
 		return (
-			<button onClick={this.handleClick}>
+			<button
+				class={style['home-page__choice-button']}
+				onClick={this.handleClick}
+			>
 				{label}
 			</button>
 		);
