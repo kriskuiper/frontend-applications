@@ -34,7 +34,7 @@ class Home extends Component {
 		setCurrentQuery(query);
 	}
 
-	handleTitleInputSubmit = async () => {
+	handleTitleInputSubmit = () => {
 		const { setResults, currentQuery } = this.props;
 
 		return fetchResultsForQuery(currentQuery, 0)
