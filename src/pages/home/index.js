@@ -49,18 +49,23 @@ class Home extends Component {
 		return (
 			<main>
 				<h1>Maak je eigen expo</h1>
-				{choices.map(choice => (
-					<ChoiceButton
-						onChoiceButtonClick={this.handleShowTitleInput}
-						query={choice.query}
-						label={choice.label}
-					/>
-				))}
-				{this.state.showTitleInput
-					? (
-						<TitleInput onTitleInputSubmit={this.handleTitleInputSubmit} />
-					)
-					: ''}
+				<section class="content">
+					<h2>Waarover wil je dat jouw expo gaat?</h2>
+					<div class="home-page__choice-buttons">
+						{choices.map(choice => (
+							<ChoiceButton
+								onChoiceButtonClick={this.handleShowTitleInput}
+								query={choice.query}
+								label={choice.label}
+							/>
+						))}
+					</div>
+					{this.state.showTitleInput
+						? (
+							<TitleInput onTitleInputSubmit={this.handleTitleInputSubmit} />
+						)
+						: ''}
+				</section>
 			</main>
 		);
 	}
