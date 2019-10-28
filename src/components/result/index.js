@@ -33,25 +33,23 @@ class Result extends Component {
 		return deleteFromExpo(result);
 	}
 
-	render({ result }) {
+	render({ result, currentExpo }) {
 		const { img, title, description } = result;
-		const isInCurrentExpo = () => {
-			const { currentExpo, result } = this.props;
-
-			return Boolean(currentExpo.results.find(object => object.id === result.id));
-		};
+		const isInCurrentExpo = () => (
+			currentExpo.results.find(object => object.id === result.id)
+		);
 
 		return (
 			<article class={style.result}>
 				<FixedRatio height={1} width={1}>
-					<img src={img} alt={`Afbeelding van ${title}`} />
+					<img src={img} alt={`Afbeelding van ${title}`} class={style.result__img} />
 				</FixedRatio>
 				<header class={style.result__header}>
 					<h3 class={style.result__title}>{title}</h3>
 					{isInCurrentExpo() ? (
 						<button onClick={this.handleDeleteFromExpo}>
 							<span class="sr-only">Delete from expo</span>
-							<AppIcon icon="minus" />
+							<AppIcon icon="delete" />
 						</button>
 					) : (
 						<button onClick={this.handleAddToExpo}>
