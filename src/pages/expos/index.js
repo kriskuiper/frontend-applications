@@ -1,6 +1,6 @@
 import { h } from 'preact';
 
-import { getExposFromStorage } from '../../../lib/expo-storage';
+import { getExposFromStorage } from '../../../lib/browser-storage';
 
 import Header from '../../components/header';
 import Expo from '../../components/expo';
