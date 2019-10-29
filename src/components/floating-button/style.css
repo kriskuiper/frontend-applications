@@ -1,8 +1,7 @@
 .floating-button {
 	position: fixed;
 	bottom: 1rem;
-	left: 50%;
-	transform: translateX(-50%);
+	right: 1rem;
 	padding: 1rem;
 	border-radius: 50px;
 	background: rgb(54, 41, 231);
