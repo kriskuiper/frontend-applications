@@ -1,7 +1,12 @@
 import { h, Component } from 'preact';
 import { connect } from 'preact-redux';
 
-import { addExpoToStorage } from '../../../lib/expo-storage';
+import {
+	addExpoToStorage,
+	getResultsFromStorage,
+	addResultsToStorage,
+	getCurrentQueryFromStorage
+} from '../../../lib/browser-storage';
 import fetchResultsForQuery from '../../../lib/fetch-results-for-query';
 
 import { setResults, clearExpo } from '../../store/actions';
@@ -24,6 +29,15 @@ const mapDispatchToProps = (dispatch) => ({
 class Results extends Component {
 	state = {	pageNumber: 1, isPending: false }
 
+	getPageNumber = () => {
+		const { pageNumber } = this.state;
+		const resultsInStorage = getResultsFromStorage();
+
+		return resultsInStorage
+			? resultsInStorage.length / 24
+			: pageNumber;
+	}
+
 	handleExposToStorage = () => {
 		const { currentExpo, clearExpo } = this.props;
 
@@ -32,38 +46,64 @@ class Results extends Component {
 	}
 
 	handlePagination = async () => {
-		const { pageNumber } = this.state;
-		const { setResults, currentQuery } = this.props;
+		const pageNumber = this.getPageNumber();
+		const { results, setResults, currentQuery } = this.props;
 		const newPageNumber = pageNumber + 1;
+
+		const storedQuery = getCurrentQueryFromStorage();
+		const queryToUse = currentQuery ? currentQuery : storedQuery;
 
 		this.setState({ pageNumber: newPageNumber });
 
 		const offset = pageNumber * 24;
 
 		this.setState({ isPending: true });
-		const offsetResults = await fetchResultsForQuery(currentQuery, offset);
+		const offsetResults = await fetchResultsForQuery(queryToUse, offset);
 		this.setState({ isPending: false });
 
+		addResultsToStorage([
+			...results,
+			...offsetResults
+		]);
 		setResults(offsetResults);
+	}
+
+	renderResults = (results, storedResults) => {
+		if (results.length > 0) {
+			return results.map((result, i) => (
+				<Result
+					key={i}
+					result={result}
+					hasAddToExpoButton
+				/>
+			));
+		}
+
+		if (storedResults.length > 0) {
+			return storedResults.map((result, i) => (
+				<Result
+					key={i}
+					result={result}
+					hasAddToExpoButton
+				/>
+			));
+		}
+
+		return (
+			<p>Geen resultaten gevonden</p>
+		);
+
 	}
 
 	render({ results }, { isPending }) {
 		const buttonText = isPending ? 'Wacht even...' : 'Laad meer';
+		const storedResults = getResultsFromStorage();
 
 		return (
 			<main>
 				<Header title="Resultaten" />
 				<section class="content">
-					{results.length > 0
-						? results.map((result, i) => (
-							<Result
-								key={i}
-								result={result}
-								hasAddToExpoButton
-							/>
-						))
-						: <p>Geen resultaten gevonden</p>
-					}
+					{this.renderResults(results, storedResults)}
 					<button
 						onClick={this.handlePagination}
 						disabled={isPending}

@@ -4,7 +4,7 @@ import { connect } from 'preact-redux';
 import { setResults, setCurrentQuery } from '../../store/actions';
 
 import fetchResultsForQuery from '../../../lib/fetch-results-for-query';
-import { addResultsToStorage } from '../../../lib/browser-storage';
+import { addResultsToStorage, addCurrentQueryToStorage } from '../../../lib/browser-storage';
 import choices from './choices';
 
 import Header from '../../components/header';
@@ -34,6 +34,7 @@ class Home extends Component {
 
 		this.setState({ showTitleInput: true });
 		setCurrentQuery(query);
+		addCurrentQueryToStorage(query);
 	}
 
 	handleTitleInputSubmit = () => {
