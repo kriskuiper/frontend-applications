@@ -12,6 +12,16 @@ import EmptyState from '../../components/empty-state';
 * to a class if I want to use lifecyclehooks or state... :(
 */
 
+const renderExpos = (expos) => (
+	expos.length > 0
+		? expos.map(expo => (
+			<Expo expo={expo} />
+		))
+		: (
+			<EmptyState title="exposities" />
+		)
+);
+
 const Expos = () => {
 	const expos = getExposFromStorage();
 
@@ -19,12 +29,7 @@ const Expos = () => {
 		<main>
 			<Header title="Jouw exposities" />
 			<section class="content">
-				{expos.lengty > 0
-					? expos.map(expo => (
-						<Expo expo={expo} />
-					))
-					: <EmptyState title="exposities" />
-				}
+				{renderExpos(expos)}
 			</section>
 		</main>
 	);
