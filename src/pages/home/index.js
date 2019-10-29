@@ -6,6 +6,7 @@ import { setResults, setCurrentQuery } from '../../store/actions';
 import fetchResultsForQuery from '../../../lib/fetch-results-for-query';
 import choices from './choices';
 
+import Header from '../../components/header';
 import TitleInput from '../../components/title-input';
 import ChoiceButton from '../../components/choice-button';
 
@@ -47,7 +48,7 @@ class Home extends Component {
 	render() {
 		return (
 			<main>
-				<h1>Maak je eigen expo</h1>
+				<Header title="Maak je eigen expo" />
 				<section class="content">
 					<h2>Waarover wil je dat jouw expo gaat?</h2>
 					<div class="home-page__choice-buttons">

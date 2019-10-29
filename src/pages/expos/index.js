@@ -2,6 +2,7 @@ import { h } from 'preact';
 
 import { getExposFromStorage } from '../../../lib/expo-storage';
 
+import Header from '../../components/header';
 import Expo from '../../components/expo';
 import EmptyState from '../../components/empty-state';
 
@@ -16,7 +17,7 @@ const Expos = () => {
 
 	return (
 		<main>
-			<h1>Jouw exposities</h1>
+			<Header title="Jouw exposities" />
 			<section class="content">
 				{expos.lengty > 0
 					? expos.map(expo => (

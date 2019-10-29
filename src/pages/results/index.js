@@ -6,6 +6,7 @@ import fetchResultsForQuery from '../../../lib/fetch-results-for-query';
 
 import { setResults, clearExpo } from '../../store/actions';
 
+import Header from '../../components/header';
 import Result from '../../components/result';
 
 const mapStateToProps = (state) => ({
@@ -45,7 +46,7 @@ class Results extends Component {
 	render({ results }) {
 		return (
 			<main>
-				<h1>Resultaten:</h1>
+				<Header title="Resultaten" />
 				<button onClick={this.handleExposToStorage}>Get expo's to localStorage</button>
 				<section class="content">
 					{results.length > 0
