@@ -1,17 +1,57 @@
+@font-face {
+	font-family: "Playfair";
+	src: url("../assets/fonts/PlayfairDisplay-Black.ttf");
+	font-weight: 900;
+	font-display: swap;
+}
+
 * {
 	box-sizing: border-box;
 }
 
 body {
 	margin: 0;
-	padding: 1rem;
+	font-family: 'Roboto', Arial, Helvetica, sans-serif;
+	font-weight: 100;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 }
 
 #app {
-	min-height: 100%;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+}
+
+h1, h2 {
+	font-family: 'Playfair', Georgia, 'Times New Roman', Times, serif;
+	font-weight: 900;
+}
+
+h1, h2, h3, h4 {
+	margin: 0;
+}
+
+h1 {
+	position: sticky;
+	top: 0;
+	z-index: -1;
+	padding: 1rem;
+}
+
+h2 {
+	margin-bottom: 1rem;
 }
 
 button {
+	font-family: inherit;
 	padding: 0.5rem;
 	background: #fff;
 	border: 0;
@@ -28,6 +68,7 @@ figure {
 	background: #333;
 	color: #fff;
 	padding: 1rem;
+	flex-grow: 1;
 }
 
 .home-page__choice-buttons {
