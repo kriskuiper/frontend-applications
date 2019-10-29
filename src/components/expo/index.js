@@ -26,7 +26,7 @@ const Expo = ({ expo }) => {
 					</figcaption>
 				</figure>
 				<details>
-					<summary>Objecten in deze expo</summary>
+					<summary class={style.expo__summary}>Objecten in deze expo</summary>
 					{results.map(result => (
 						<Result result={result} />
 					))}

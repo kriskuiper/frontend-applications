@@ -10,10 +10,15 @@
 
 .expo__fixed-ratio-container {
 	flex: 0 0 50%;
+	margin-bottom: 1rem;
 }
 
 .expo__img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+}
+
+.expo__summary {
+	margin-bottom: 1rem;
 }
