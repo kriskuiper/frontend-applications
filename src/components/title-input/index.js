@@ -8,7 +8,7 @@ import { route } from 'preact-router';
 const mapDispatchToProps = { setExpoTitle };
 
 class TitleInput extends Component {
-	state = { input: '' }
+	state = { input: '', isPending: false };
 
 	handleInput = (event) => {
 		this.setState({ input: event.target.value });
@@ -20,16 +20,27 @@ class TitleInput extends Component {
 		const { setExpoTitle, onTitleInputSubmit } = this.props;
 
 		setExpoTitle(input);
+
+		this.setState({ isPending: true });
 		await onTitleInputSubmit();
+		this.setState({ isPending: false });
+
 		route('/results');
 	}
 
-	render() {
+	render({}, { isPending }) {
+		const buttonText = isPending ? 'Wacht even...' : 'Zoek objecten';
+
 		return (
 			<form onSubmit={this.handleSubmit} class={style['title-input']}>
 				<label class={style['title-input__label']}>Geef je nieuwe titel een naam </label>
 				<input type="text" onInput={this.handleInput} class={style['title-input__input']} />
-				<button class={style['title-input__button']}>Zoek objecten</button>
+				<button
+					class={style['title-input__button']}
+					disabled={isPending}
+				>
+					{buttonText}
+				</button>
 			</form>
 		);
 	}

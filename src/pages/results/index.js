@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class Results extends Component {
-	state = {	pageNumber: 1 }
+	state = {	pageNumber: 1, isPending: false }
 
 	handleExposToStorage = () => {
 		const { currentExpo, clearExpo } = this.props;
@@ -38,12 +38,17 @@ class Results extends Component {
 		this.setState({ pageNumber: newPageNumber });
 
 		const offset = pageNumber * 24;
+
+		this.setState({ isPending: true });
 		const offsetResults = await fetchResultsForQuery(currentQuery, offset);
+		this.setState({ isPending: false });
 
 		setResults(offsetResults);
 	}
 
-	render({ results }) {
+	render({ results }, { isPending }) {
+		const buttonText = isPending ? 'Wacht even...' : 'Laad meer';
+
 		return (
 			<main>
 				<Header title="Resultaten" />
@@ -58,7 +63,12 @@ class Results extends Component {
 						))
 						: <p>Geen resultaten gevonden</p>
 					}
-					<button onClick={this.handlePagination}>Load more</button>
+					<button
+						onClick={this.handlePagination}
+						disabled={isPending}
+					>
+						{buttonText}
+					</button>
 				</section>
 			</main>
 		);
