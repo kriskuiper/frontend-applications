@@ -51,7 +51,8 @@ h2 {
 	margin-bottom: 1rem;
 }
 
-button {
+button,
+.button {
 	font-family: inherit;
 	padding: 0.5rem;
 	background: #fff;
@@ -59,6 +60,8 @@ button {
 	margin-bottom: 0.5rem;
 	text-align: center;
 	font-size: 0.875rem;
+	border-radius: 3px;
+	text-transform: uppercase;
 }
 
 figure {
