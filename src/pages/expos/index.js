@@ -3,6 +3,7 @@ import { h } from 'preact';
 import { getExposFromStorage } from '../../../lib/expo-storage';
 
 import Expo from '../../components/expo';
+import EmptyState from '../../components/empty-state';
 
 /*
 * Since useEffect and useState are only available in
@@ -15,11 +16,14 @@ const Expos = () => {
 
 	return (
 		<main>
-			<h1>Resultaten</h1>
+			<h1>Jouw exposities</h1>
 			<section class="content">
-				{expos.map(expo => (
-					<Expo expo={expo} />
-				))}
+				{expos.lengty > 0
+					? expos.map(expo => (
+						<Expo expo={expo} />
+					))
+					: <EmptyState title="exposities" />
+				}
 			</section>
 		</main>
 	);
