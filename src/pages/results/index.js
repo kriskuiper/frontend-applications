@@ -59,6 +59,7 @@ class Results extends Component {
 							<Result
 								key={i}
 								result={result}
+								hasAddToExpoButton
 							/>
 						))
 						: <p>Geen resultaten gevonden</p>

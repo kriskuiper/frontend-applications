@@ -33,7 +33,7 @@ class Result extends Component {
 		return deleteFromExpo(result);
 	}
 
-	render({ result, currentExpo }) {
+	render({ result, currentExpo, hasAddToExpoButton }) {
 		const { img, title, description } = result;
 		const isInCurrentExpo = () => (
 			currentExpo.results.find(object => object.id === result.id)
@@ -52,17 +52,26 @@ class Result extends Component {
 				</figure>
 				<header class={style.result__header}>
 					<h3 class={style.result__title}>{title}</h3>
-					{isInCurrentExpo() ? (
-						<button onClick={this.handleDeleteFromExpo}>
-							<span class="sr-only">Delete from expo</span>
-							<AppIcon icon="delete" />
-						</button>
-					) : (
-						<button onClick={this.handleAddToExpo}>
-							<span class="sr-only">Add to expo</span>
-							<AppIcon icon="plus" />
-						</button>
-					)}
+					{/* @TODO: REFACTOR THIS!!! */}
+					{hasAddToExpoButton
+						? isInCurrentExpo() ? (
+							<button
+								class={style['result__add-to-expo-button']}
+								onClick={this.handleDeleteFromExpo}
+							>
+								<span class="sr-only">Delete from expo</span>
+								<AppIcon icon="delete" />
+							</button>
+						) : (
+							<button
+								class={style['result__add-to-expo-button']}
+								onClick={this.handleAddToExpo}
+							>
+								<span class="sr-only">Add to expo</span>
+								<AppIcon icon="plus" />
+							</button>
+						) : ''
+					}
 				</header>
 				{description ? (
 					<p class="result__description">
