@@ -8,6 +8,7 @@ import { setResults, clearExpo } from '../../store/actions';
 
 import Header from '../../components/header';
 import Result from '../../components/result';
+import FloatingButton from '../../components/floating-button';
 
 const mapStateToProps = (state) => ({
 	results: state.results,
@@ -52,7 +53,6 @@ class Results extends Component {
 		return (
 			<main>
 				<Header title="Resultaten" />
-				<button onClick={this.handleExposToStorage}>Get expo's to localStorage</button>
 				<section class="content">
 					{results.length > 0
 						? results.map((result, i) => (
@@ -70,6 +70,10 @@ class Results extends Component {
 						{buttonText}
 					</button>
 				</section>
+				<FloatingButton
+					text="Sla expo op"
+					onFloatingButtonClick={this.handleExposToStorage}
+				/>
 			</main>
 		);
 	}
