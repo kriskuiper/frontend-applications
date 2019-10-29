@@ -41,9 +41,15 @@ class Result extends Component {
 
 		return (
 			<article class={style.result}>
-				<FixedRatio height={1} width={1}>
-					<img src={img} alt={`Afbeelding van ${title}`} class={style.result__img} />
-				</FixedRatio>
+				<figure class={style['result__img-container']}>
+					<FixedRatio height={1} width={1}>
+						<img
+							src={img}
+							alt={`Afbeelding van ${title}`}
+							class={style.result__img}
+						/>
+					</FixedRatio>
+				</figure>
 				<header class={style.result__header}>
 					<h3 class={style.result__title}>{title}</h3>
 					{isInCurrentExpo() ? (
