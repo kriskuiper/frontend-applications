@@ -4,6 +4,7 @@ import { connect } from 'preact-redux';
 import { setResults, setCurrentQuery } from '../../store/actions';
 
 import fetchResultsForQuery from '../../../lib/fetch-results-for-query';
+import { addResultsToStorage } from '../../../lib/browser-storage';
 import choices from './choices';
 
 import Header from '../../components/header';
@@ -39,7 +40,10 @@ class Home extends Component {
 		const { setResults, currentQuery } = this.props;
 
 		return fetchResultsForQuery(currentQuery, 0)
-			.then(setResults)
+			.then(results => {
+				setResults(results);
+				addResultsToStorage(results);
+			})
 			.catch(() => {
 				throw new Error('Could not set new results');
 			});
