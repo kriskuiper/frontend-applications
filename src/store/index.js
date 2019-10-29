@@ -9,7 +9,6 @@ import {
 	SET_CURRENT_QUERY
 } from './action-types';
 
-
 const defaultState = {
 	results: [],
 	currentExpo: {
