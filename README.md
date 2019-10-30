@@ -3,6 +3,8 @@
 
 ![Image here]()
 
+Geweldig
+
 ## Description
 My awesome project is a web app where students can explore the NVMW collection and create expos themselves based on four different themes. 
 
