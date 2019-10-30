@@ -4,13 +4,12 @@
 
 .expo__img-container {
 	display: flex;
-	justify-content: center;
 	flex-wrap: wrap;
+	margin-bottom: 1rem;
 }
 
 .expo__fixed-ratio-container {
 	flex: 0 0 50%;
-	margin-bottom: 1rem;
 }
 
 .expo__img {
