@@ -13,6 +13,7 @@ import { setResults, clearExpo } from '../../store/actions';
 
 import Header from '../../components/header';
 import Result from '../../components/result';
+import EmptyState from '../../components/empty-state';
 import FloatingButton from '../../components/floating-button';
 
 const mapStateToProps = (state) => ({
@@ -90,7 +91,10 @@ class Results extends Component {
 		}
 
 		return (
-			<p>Geen resultaten gevonden</p>
+			<EmptyState
+				title="resultaten"
+				buttonText="Probeer opnieuw"
+			/>
 		);
 
 	}

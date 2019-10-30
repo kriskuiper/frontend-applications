@@ -18,7 +18,10 @@ const renderExpos = (expos) => (
 			<Expo expo={expo} />
 		))
 		: (
-			<EmptyState title="exposities" />
+			<EmptyState
+				title="exposities"
+				buttonText="Start met maken"
+			/>
 		)
 );
 
