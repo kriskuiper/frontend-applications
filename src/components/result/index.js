@@ -2,7 +2,7 @@ import { h, Component } from 'preact';
 import { connect } from 'preact-redux';
 import style from './style.css';
 
-import { addToExpo, deleteFromExpo } from '../../store/actions';
+import { addToExpo, deleteFromExpo, toggleFloatingButton } from '../../store/actions';
 
 import FixedRatio from '../fixed-ratio';
 import AppIcon from '../app-icon';
@@ -10,25 +10,42 @@ import AppIcon from '../app-icon';
 const formatDescriptionForResult = description => description.replace(/<br>/gi, '');
 
 const mapStateToProps = (state) => ({
-	currentExpo: state.currentExpo
+	currentExpo: state.currentExpo,
+	showFloatingButton: state.showFloatingButton
 });
 
 const mapDispatchToProps = (dispatch) => ({
 	addToExpo: (result) => { dispatch(addToExpo(result)); },
-	deleteFromExpo: (result) => { dispatch(deleteFromExpo(result)); }
+	deleteFromExpo: (result) => { dispatch(deleteFromExpo(result)); },
+	toggleFloatingButton: (show) => { dispatch(toggleFloatingButton(show)); }
 });
 
 class Result extends Component {
-
-
 	handleAddToExpo = () => {
-		const { addToExpo, result } = this.props;
+		const {
+			addToExpo,
+			toggleFloatingButton,
+			result,
+			showFloatingButton
+		} = this.props;
+
+		if (!showFloatingButton) {
+			toggleFloatingButton(true);
+		}
 
 		return addToExpo(result);
 	}
 
 	handleDeleteFromExpo = () => {
-		const { deleteFromExpo, result } = this.props;
+		const {
+			deleteFromExpo,
+			toggleFloatingButton,
+			result,
+			currentExpo } = this.props;
+
+		if (currentExpo.results.length === 1) {
+			toggleFloatingButton(false);
+		}
 
 		return deleteFromExpo(result);
 	}
