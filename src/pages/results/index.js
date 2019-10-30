@@ -5,7 +5,9 @@ import {
 	addExpoToStorage,
 	getResultsFromStorage,
 	addResultsToStorage,
-	getCurrentQueryFromStorage
+	getCurrentQueryFromStorage,
+	getPageNumberFromStorage,
+	addPageNumberToStorage
 } from '../../../lib/browser-storage';
 import fetchResultsForQuery from '../../../lib/fetch-results-for-query';
 
@@ -30,18 +32,18 @@ const mapDispatchToProps = (dispatch) => ({
 
 class Results extends Component {
 	state = {
-		pageNumber: 1,
 		isPending: false,
 		floatingButtonText: 'Sla expo op'
 	}
 
 	getPageNumber = () => {
-		const { pageNumber } = this.state;
-		const resultsInStorage = getResultsFromStorage();
+		let pageNumber = getPageNumberFromStorage();
 
-		return resultsInStorage
-			? resultsInStorage.length / 24
-			: pageNumber;
+		if (!pageNumber) {
+			pageNumber = 0;
+		}
+
+		return pageNumber;
 	}
 
 	handleExposToStorage = () => {
@@ -59,28 +61,26 @@ class Results extends Component {
 
 	handlePagination = async () => {
 		const pageNumber = this.getPageNumber();
-		const { results, setResults, currentQuery } = this.props;
-		const newPageNumber = pageNumber + 1;
+		const { setResults, currentQuery } = this.props;
 
 		const storedQuery = getCurrentQueryFromStorage();
 		const queryToUse = currentQuery ? currentQuery : storedQuery;
 
-		this.setState({ pageNumber: newPageNumber });
+		const offset = pageNumber * 24;
 
-		const offset = newPageNumber * 24;
+		addPageNumberToStorage(pageNumber + 1);
 
 		this.setState({ isPending: true });
 		const offsetResults = await fetchResultsForQuery(queryToUse, offset);
 		this.setState({ isPending: false });
 
-		addResultsToStorage([
-			...results,
-			...offsetResults
-		]);
 		setResults(offsetResults);
+		addResultsToStorage(offsetResults);
 	}
 
-	renderResults = (results, storedResults) => {
+	renderResults = (results) => {
+		const storedResults = getResultsFromStorage();
+
 		if (results.length > 0) {
 			return results.map((result, i) => (
 				<Result
@@ -111,13 +111,12 @@ class Results extends Component {
 
 	render({ results, showFloatingButton }, { isPending, floatingButtonText }) {
 		const buttonText = isPending ? 'Wacht even...' : 'Laad meer';
-		const storedResults = getResultsFromStorage();
 
 		return (
 			<main>
 				<Header title="Resultaten" />
 				<section class="content">
-					{this.renderResults(results, storedResults)}
+					{this.renderResults(results)}
 					<button
 						onClick={this.handlePagination}
 						disabled={isPending}

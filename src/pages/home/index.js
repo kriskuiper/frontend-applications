@@ -2,7 +2,7 @@ import { h, Component } from 'preact';
 import { connect } from 'preact-redux';
 
 import fetchResultsForQuery from '../../../lib/fetch-results-for-query';
-import { addResultsToStorage, addCurrentQueryToStorage } from '../../../lib/browser-storage';
+import { addResultsToStorage, addCurrentQueryToStorage, addPageNumberToStorage } from '../../../lib/browser-storage';
 
 import { setResults, setCurrentQuery } from '../../store/actions';
 
@@ -44,7 +44,8 @@ class Home extends Component {
 		return fetchResultsForQuery(currentQuery, 0)
 			.then(results => {
 				setResults(results);
-				addResultsToStorage(results);
+				addPageNumberToStorage(1);
+				addResultsToStorage(results, true);
 			})
 			.catch(() => {
 				throw new Error('Could not set new results');
