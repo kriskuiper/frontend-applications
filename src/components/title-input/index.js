@@ -5,7 +5,9 @@ import style from './style.css';
 import { setExpoTitle } from '../../store/actions';
 import { route } from 'preact-router';
 
-const mapDispatchToProps = { setExpoTitle };
+const mapDispatchToProps = (dispatch) => ({
+	setExpoTitle: (title) => { dispatch(setExpoTitle(title)); }
+});
 
 class TitleInput extends Component {
 	state = { input: '', isPending: false };
