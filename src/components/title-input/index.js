@@ -1,9 +1,10 @@
 import { h, Component } from 'preact';
 import { connect } from 'preact-redux';
+import { route } from 'preact-router';
+
 import style from './style.css';
 
 import { setExpoTitle } from '../../store/actions';
-import { route } from 'preact-router';
 
 const mapDispatchToProps = (dispatch) => ({
 	setExpoTitle: (title) => { dispatch(setExpoTitle(title)); }

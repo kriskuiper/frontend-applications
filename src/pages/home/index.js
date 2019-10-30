@@ -1,10 +1,11 @@
 import { h, Component } from 'preact';
 import { connect } from 'preact-redux';
 
-import { setResults, setCurrentQuery } from '../../store/actions';
-
 import fetchResultsForQuery from '../../../lib/fetch-results-for-query';
 import { addResultsToStorage, addCurrentQueryToStorage } from '../../../lib/browser-storage';
+
+import { setResults, setCurrentQuery } from '../../store/actions';
+
 import choices from './choices';
 
 import Header from '../../components/header';

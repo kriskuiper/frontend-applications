@@ -1,5 +1,6 @@
 import { h, Component } from 'preact';
 import { connect } from 'preact-redux';
+
 import style from './style.css';
 
 import { addToExpo, deleteFromExpo, toggleFloatingButton } from '../../store/actions';
@@ -41,7 +42,8 @@ class Result extends Component {
 			deleteFromExpo,
 			toggleFloatingButton,
 			result,
-			currentExpo } = this.props;
+			currentExpo
+		} = this.props;
 
 		if (currentExpo.results.length === 1) {
 			toggleFloatingButton(false);
