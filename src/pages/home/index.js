@@ -53,7 +53,7 @@ class Home extends Component {
 
 	render() {
 		return (
-			<main>
+			<main class="home-page">
 				<Header title="Maak je eigen expo" />
 				<section class="content">
 					<h2>Waarover wil je dat jouw expo gaat?</h2>

@@ -1,5 +1,18 @@
 .expo {
 	margin-bottom: 2rem;
+	flex: 0 0 100%;
+}
+
+@media (min-width: 570px) {
+	.expo {
+		flex: 0 0 calc(50% - 0.5rem);
+	}
+}
+
+@media (min-width: 920px) {
+	.expo {
+		flex: 0 0 calc(33.33% - 1rem);
+	}
 }
 
 .expo__img-container {
