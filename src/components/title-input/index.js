@@ -33,7 +33,7 @@ class TitleInput extends Component {
 
 		return (
 			<form onSubmit={this.handleSubmit} class={style['title-input']}>
-				<label class={style['title-input__label']}>Geef je nieuwe titel een naam </label>
+				<label class={style['title-input__label']}>Geef je nieuwe expositie een naam </label>
 				<input type="text" onInput={this.handleInput} class={style['title-input__input']} />
 				<button
 					class={style['title-input__button']}
