@@ -14,7 +14,7 @@ import fetchResultsForQuery from '../../../lib/fetch-results-for-query';
 import { setResults, clearExpo } from '../../store/actions';
 
 import Header from '../../components/header';
-import Result from '../../components/result';
+import ResultsList from '../../components/results-list';
 import EmptyState from '../../components/empty-state';
 import FloatingButton from '../../components/floating-button';
 
@@ -36,16 +36,6 @@ class Results extends Component {
 		floatingButtonText: 'Sla expo op'
 	}
 
-	getPageNumber = () => {
-		let pageNumber = getPageNumberFromStorage();
-
-		if (!pageNumber) {
-			pageNumber = 0;
-		}
-
-		return pageNumber;
-	}
-
 	handleExposToStorage = () => {
 		const { currentExpo, clearExpo } = this.props;
 
@@ -59,71 +49,39 @@ class Results extends Component {
 		clearExpo();
 	}
 
-	handlePagination = async () => {
-		const pageNumber = this.getPageNumber();
-		const { setResults, currentQuery } = this.props;
-
-		const storedQuery = getCurrentQueryFromStorage();
-		const queryToUse = currentQuery ? currentQuery : storedQuery;
-
-		const offset = pageNumber * 24;
-
-		addPageNumberToStorage(pageNumber + 1);
-
-		this.setState({ isPending: true });
-		const offsetResults = await fetchResultsForQuery(queryToUse, offset);
-		this.setState({ isPending: false });
-
-		setResults(offsetResults);
-		addResultsToStorage(offsetResults);
-	}
-
 	renderResults = (results) => {
 		const storedResults = getResultsFromStorage();
+		const resultsToUse = results.length > 0 ? results : storedResults;
 
 		if (results.length > 0) {
-			return results.map((result, i) => (
-				<Result
-					key={i}
-					result={result}
-					hasAddToExpoButton
+			return (
+				<ResultsList
+					results={resultsToUse}
+					haveAddToExpoButtons
 				/>
-			));
+			);
 		}
 
 		if (storedResults.length > 0) {
-			return storedResults.map((result, i) => (
-				<Result
-					key={i}
-					result={result}
-					hasAddToExpoButton
+			return (
+				<ResultsList
+					results={resultsToUse}
+					haveAddToExpoButtons
 				/>
-			));
+			);
 		}
 
 		return (
-			<EmptyState
-				title="resultaten"
-				buttonText="Probeer opnieuw"
-			/>
+			<EmptyState buttonText="Probeer opnieuw" />
 		);
 	}
 
 	render({ results, showFloatingButton }, { isPending, floatingButtonText }) {
-		const buttonText = isPending ? 'Wacht even...' : 'Laad meer';
-
 		return (
 			<main>
 				<Header title="Resultaten" />
-				<section class="content">
-					{this.renderResults(results)}
-					<button
-						onClick={this.handlePagination}
-						disabled={isPending}
-					>
-						{buttonText}
-					</button>
-				</section>
+				{this.renderResults(results)}
+
 				<FloatingButton
 					text={floatingButtonText}
 					onFloatingButtonClick={this.handleExposToStorage}
