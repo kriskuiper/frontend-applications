@@ -55,7 +55,7 @@ class Results extends Component {
 
 		this.setState({ pageNumber: newPageNumber });
 
-		const offset = pageNumber * 24;
+		const offset = newPageNumber * 24;
 
 		this.setState({ isPending: true });
 		const offsetResults = await fetchResultsForQuery(queryToUse, offset);
