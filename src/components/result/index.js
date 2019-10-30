@@ -50,8 +50,41 @@ class Result extends Component {
 		return deleteFromExpo(result);
 	}
 
+	renderExpoButtons = (isInCurrentExpo) => {
+		const { hasAddToExpoButton } = this.props;
+
+		return hasAddToExpoButton
+			? isInCurrentExpo() ? (
+				<button
+					class={style['result__add-to-expo-button']}
+					onClick={this.handleDeleteFromExpo}
+				>
+					<span class="sr-only">Delete from expo</span>
+					<AppIcon icon="delete" />
+				</button>
+			) : (
+				<button
+					class={style['result__add-to-expo-button']}
+					onClick={this.handleAddToExpo}
+				>
+					<span class="sr-only">Add to expo</span>
+					<AppIcon icon="plus" />
+				</button>
+			) : '';
+	}
+
+	renderDescription = () => {
+		const { description } = this.props.result;
+
+		return description ? (
+			<p class="result__description">
+				{formatDescriptionForResult(description)}
+			</p>
+		) : '';
+	}
+
 	render({ result, currentExpo, hasAddToExpoButton }) {
-		const { img, title, description } = result;
+		const { img, title } = result;
 		const isInCurrentExpo = () => (
 			currentExpo.results.find(object => object.id === result.id)
 		);
@@ -67,34 +100,13 @@ class Result extends Component {
 						/>
 					</FixedRatio>
 				</figure>
+
 				<header class={style.result__header}>
 					<h3 class={style.result__title}>{title}</h3>
-					{/* @TODO: REFACTOR THIS!!! */}
-					{hasAddToExpoButton
-						? isInCurrentExpo() ? (
-							<button
-								class={style['result__add-to-expo-button']}
-								onClick={this.handleDeleteFromExpo}
-							>
-								<span class="sr-only">Delete from expo</span>
-								<AppIcon icon="delete" />
-							</button>
-						) : (
-							<button
-								class={style['result__add-to-expo-button']}
-								onClick={this.handleAddToExpo}
-							>
-								<span class="sr-only">Add to expo</span>
-								<AppIcon icon="plus" />
-							</button>
-						) : ''
-					}
+					{this.renderExpoButtons(isInCurrentExpo)}
 				</header>
-				{description ? (
-					<p class="result__description">
-						{formatDescriptionForResult(description)}
-					</p>
-				) : ''}
+
+				{this.renderDescription()}
 			</article>
 		);
 	}
