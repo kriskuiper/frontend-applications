@@ -6,7 +6,8 @@ import {
 	ADD_TO_EXPO,
 	DELETE_FROM_EXPO,
 	CLEAR_EXPO,
-	SET_CURRENT_QUERY
+	SET_CURRENT_QUERY,
+	TOGGLE_FLOATING_BUTTON
 } from './action-types';
 
 const defaultState = {
@@ -15,7 +16,8 @@ const defaultState = {
 		title: '',
 		results: []
 	},
-	currentQuery: ''
+	currentQuery: '',
+	showFloatingButton: false
 };
 
 const rootReducer = (state = defaultState, action) => {
@@ -78,6 +80,13 @@ const rootReducer = (state = defaultState, action) => {
 		return {
 			...state,
 			currentQuery: action.query
+		};
+	}
+
+	if (action.type === TOGGLE_FLOATING_BUTTON) {
+		return {
+			...state,
+			showFloatingButton: action.show
 		};
 	}
 

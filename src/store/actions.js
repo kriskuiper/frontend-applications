@@ -4,7 +4,8 @@ import {
 	ADD_TO_EXPO,
 	DELETE_FROM_EXPO,
 	CLEAR_EXPO,
-	SET_CURRENT_QUERY
+	SET_CURRENT_QUERY,
+	TOGGLE_FLOATING_BUTTON
 } from './action-types';
 
 export function setResults(results) {
@@ -29,4 +30,8 @@ export function clearExpo() {
 
 export function setCurrentQuery(query) {
 	return { type: SET_CURRENT_QUERY, query };
+}
+
+export function toggleFloatingButton(show) {
+	return { type: TOGGLE_FLOATING_BUTTON, show };
 }
