@@ -19,7 +19,8 @@ import FloatingButton from '../../components/floating-button';
 const mapStateToProps = (state) => ({
 	results: state.results,
 	currentExpo: state.currentExpo,
-	currentQuery: state.currentQuery
+	currentQuery: state.currentQuery,
+	showFloatingButton: state.showFloatingButton
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -28,7 +29,11 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class Results extends Component {
-	state = {	pageNumber: 1, isPending: false }
+	state = {
+		pageNumber: 1,
+		isPending: false,
+		floatingButtonText: 'Sla expo op'
+	}
 
 	getPageNumber = () => {
 		const { pageNumber } = this.state;
@@ -41,6 +46,12 @@ class Results extends Component {
 
 	handleExposToStorage = () => {
 		const { currentExpo, clearExpo } = this.props;
+
+		this.setState({ floatingButtonText: 'Gelukt! 🤙' });
+
+		setTimeout(() => {
+			this.setState({ floatingButtonText: 'Sla expo op' });
+		}, 2000);
 
 		addExpoToStorage(currentExpo);
 		clearExpo();
@@ -96,10 +107,9 @@ class Results extends Component {
 				buttonText="Probeer opnieuw"
 			/>
 		);
-
 	}
 
-	render({ results }, { isPending }) {
+	render({ results, showFloatingButton }, { isPending, floatingButtonText }) {
 		const buttonText = isPending ? 'Wacht even...' : 'Laad meer';
 		const storedResults = getResultsFromStorage();
 
@@ -116,8 +126,9 @@ class Results extends Component {
 					</button>
 				</section>
 				<FloatingButton
-					text="Sla expo op"
+					text={floatingButtonText}
 					onFloatingButtonClick={this.handleExposToStorage}
+					showFloatingButton={showFloatingButton}
 				/>
 			</main>
 		);
