@@ -1,5 +1,5 @@
 # NVMW Expos
-> A blazingly fast web app where students can create their own expos using 
+> A blazingly fast web app where students can create their own expos using a selection of collections based on four different themes.
 
 ![Image here](/assets/screenshot1.png)
 
