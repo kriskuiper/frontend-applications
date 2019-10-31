@@ -1,7 +1,7 @@
 # NVMW Expos
 > Project for the 'Front-end Applications' course of the Information Design *Tech Track*
 
-![Image here]()
+![Image here](/assets/screenshot1.png)
 
 ## Description
 NVMW Expos is a web app where students can explore the NVMW collection and create expos themselves based on four different themes. 
@@ -12,15 +12,15 @@ NVMW Expos is a web app where students can explore the NVMW collection and creat
 * Show their expos to friends using the expos page
 
 #### Explore collections of four different themes
-![Image here]()
+![Image here](/assets/screenshot2.png)
 Users can choose one of four different themes to base their expo on. They can therefore explore each collection of items.
 
 #### Create expos by adding or deleting items
-![Image here]()
+![Image here](/assets/screenshot3.png)
 In the results page users can add or delete items from their current expo using the 'add to expo' or 'delete from expo' button.
 
 #### Show expos on the expos page
-![Image here]()
+![Image here](/assets/screenshot4.png)
 All expos get stored in local storage and are being used on the expos page. The expos page gives an overview of all expos created by the user. A user can show their expos to others by going to the expos page.
 
 ## Installation
