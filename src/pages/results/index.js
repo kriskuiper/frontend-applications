@@ -72,7 +72,10 @@ class Results extends Component {
 		}
 
 		return (
-			<EmptyState buttonText="Probeer opnieuw" />
+			<EmptyState
+				title="resultaten"
+				buttonText="Probeer opnieuw"
+			/>
 		);
 	}
 
